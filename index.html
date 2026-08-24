@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bobby — UI/UX Designer & Frontend Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+  }
+
+  body {
+    background: #E2E1DB;
+    color: #1A1A18;
+    font-family: 'Inter', sans-serif;
+    line-height: 1.5;
+    padding: clamp(12px, 3vw, 24px) clamp(12px, 3vw, 16px);
+  }
+
+  .container {
+    max-width: 1080px;
+    width: 100%;
+    margin: 0 auto;
+    background: #E8E7E1;
+    border-radius: clamp(16px, 3vw, 24px);
+    padding: clamp(20px, 4vw, 48px);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.03);
+  }
+
+  /* ---- HEADER ---- */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: clamp(24px, 5vw, 40px);
+  }
+  .brand {
+    font-family: 'Oswald', sans-serif;
+    font-size: clamp(16px, 2vw, 18px);
+    letter-spacing: 0.05em;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .brand-dot { width: 8px; height: 8px; background: #1A1A18; border-radius: 50%; }
+  .menu-btn {
+    background: #1A1A18;
+    color: #E8E7E1;
+    padding: 8px 18px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-family: 'Oswald', sans-serif;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  /* ---- HERO SECTION ---- */
+  .hero {
+    display: grid;
+    grid-template-columns: 1fr minmax(260px, 340px) minmax(120px, 180px);
+    gap: clamp(20px, 3vw, 32px);
+    align-items: center;
+    margin-bottom: clamp(36px, 6vw, 60px);
+  }
+
+  .hero-greeting {
+    font-size: clamp(13px, 1.5vw, 15px);
+    color: #66655F;
+    margin-bottom: 12px;
+    font-weight: 500;
+  }
+
+  .hero-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: clamp(36px, 5vw, 52px);
+    line-height: 0.95;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+    margin-bottom: 20px;
+  }
+  .hero-title span {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-weight: 400;
+    text-transform: none;
+    display: block;
+  }
+
+  .hero-sub {
+    font-size: clamp(12.5px, 1.3vw, 13.5px);
+    color: #55544E;
+    line-height: 1.5;
+    margin-bottom: 24px;
+    max-width: 320px;
+  }
+
+  .cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: #1A1A18;
+    color: #E8E7E1;
+    padding: 10px 22px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-family: 'Oswald', sans-serif;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+
+  /* ARCH PHOTO FRAME */
+  .arch-frame {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    max-height: 420px;
+    background: #D8D7CF;
+    border-radius: 200px 200px 20px 20px;
+    position: relative;
+    overflow: hidden;
+    margin: 0 auto;
+  }
+  .arch-frame img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+  }
+  .arch-caption {
+    position: absolute;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(26, 26, 24, 0.75);
+    color: #E8E7E1;
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-size: 10px;
+    font-family: 'Oswald', sans-serif;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    backdrop-filter: blur(4px);
+    white-space: nowrap;
+  }
+
+  /* STATS COLUMN */
+  .hero-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    text-align: right;
+  }
+  .stat-item .num {
+    font-family: 'Oswald', sans-serif;
+    font-size: clamp(24px, 3vw, 32px);
+    font-weight: 700;
+    line-height: 1;
+  }
+  .stat-item .label {
+    font-size: 11px;
+    color: #77766F;
+    margin-top: 4px;
+  }
+
+  /* ---- CAPABILITIES ROW ---- */
+  .capabilities {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: clamp(16px, 2.5vw, 24px);
+    border-top: 1px solid #D0CFB8;
+    padding-top: 28px;
+    margin-bottom: clamp(36px, 6vw, 60px);
+  }
+  .cap-card h4 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 8px;
+  }
+  .cap-card p {
+    font-size: 12px;
+    color: #66655F;
+    line-height: 1.4;
+  }
+
+  /* ---- STACK BAR ---- */
+  .stack-section {
+    background: #E0DFD8;
+    border-radius: 16px;
+    padding: clamp(16px, 3vw, 32px);
+    margin-bottom: clamp(40px, 7vw, 80px);
+  }
+  .stack-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+  .stack-header h3 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 14px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .stack-header span {
+    font-size: 12px;
+    color: #77766F;
+  }
+  .stack-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 12px;
+  }
+  .stack-box {
+    background: #E8E7E1;
+    border: 1px solid #D5D4CC;
+    padding: 12px;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 600;
+    color: #44433E;
+  }
+
+  /* ---- ABOUT STATEMENT ---- */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(24px, 4vw, 48px);
+    margin-bottom: clamp(40px, 7vw, 80px);
+    align-items: start;
+  }
+  .about-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: clamp(26px, 3.5vw, 38px);
+    line-height: 1.05;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+  }
+  .about-text {
+    font-size: clamp(13px, 1.4vw, 14.5px);
+    color: #44433E;
+    line-height: 1.6;
+  }
+  .about-text p { margin-bottom: 16px; }
+
+  /* ---- PORTFOLIO SECTION ---- */
+  .portfolio-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 28px;
+  }
+  .portfolio-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: clamp(26px, 3.5vw, 36px);
+    text-transform: uppercase;
+  }
+  .portfolio-sub {
+    font-size: 12px;
+    color: #77766F;
+    max-width: 300px;
+    text-align: right;
+  }
+
+  /* PROJECT TAB SWITCHER */
+  .showcase-tabs-wrapper {
+    margin-bottom: 32px;
+    display: flex;
+    justify-content: flex-start;
+    overflow-x: auto;
+    padding-bottom: 4px;
+  }
+  .showcase-tabs {
+    display: inline-flex;
+    gap: 8px;
+    background: #D8D7CF;
+    padding: 6px;
+    border-radius: 999px;
+    flex-wrap: nowrap;
+  }
+  .tab-btn {
+    background: transparent;
+    border: none;
+    color: #66655F;
+    padding: 8px 20px;
+    font-size: 12px;
+    font-family: 'Oswald', sans-serif;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    border-radius: 999px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.25s ease;
+  }
+  .tab-btn.active, .tab-btn:hover {
+    color: #E8E7E1;
+    background: #1A1A18;
+  }
+
+  /* GALLERY GRID STYLES */
+  .project-gallery {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.35s ease-in-out;
+  }
+  .project-gallery.active {
+    display: block;
+    opacity: 1;
+  }
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+  }
+  .gallery-card {
+    background: #E0DFD8;
+    border-radius: 20px;
+    overflow: hidden;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.3s ease;
+  }
+  .gallery-card:hover {
+    transform: translateY(-4px);
+  }
+  .gallery-card.featured {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 24px;
+    align-items: center;
+    padding: 24px;
+  }
+  .img-wrapper {
+    background: transparent;
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 200px;
+    width: 100%;
+  }
+  .gallery-card.featured .img-wrapper {
+    min-height: 280px;
+  }
+  .img-wrapper img {
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    object-fit: cover;
+    object-position: top;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+  }
+  .img-wrapper img:hover {
+    opacity: 0.9;
+  }
+  .gallery-card:not(.featured) .img-wrapper img {
+    object-fit: contain;
+    object-position: center;
+  }
+  .card-info {
+    padding-top: 16px;
+  }
+  .card-tag {
+    display: inline-block;
+    background: #D0CFB8;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 10px;
+    font-family: 'Oswald', sans-serif;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .card-info h3 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 18px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .card-info p {
+    font-size: 12.5px;
+    color: #66655F;
+    line-height: 1.4;
+  }
+
+  /* ---- LIGHTBOX MODAL ---- */
+  .lightbox-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(26, 26, 24, 0.85);
+    backdrop-filter: blur(8px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    padding: 24px;
+  }
+
+  .lightbox-overlay.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .lightbox-img {
+    max-width: 90vw;
+    max-height: 85vh;
+    object-fit: contain;
+    border-radius: 12px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    transform: scale(0.95);
+    transition: transform 0.3s ease;
+  }
+
+  .lightbox-overlay.active .lightbox-img {
+    transform: scale(1);
+  }
+
+  .lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 28px;
+    font-size: 32px;
+    color: #E8E7E1;
+    cursor: pointer;
+    line-height: 1;
+    user-select: none;
+  }
+
+  /* ---- BREAKPOINTS ---- */
+
+  /* Tablet Layout (under 900px) */
+  @media (max-width: 900px) {
+    .hero {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+    .hero-sub {
+      margin: 0 auto 24px;
+    }
+    .arch-frame {
+      max-width: 280px;
+    }
+    .hero-stats {
+      text-align: center;
+      flex-direction: row;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+    .about-grid {
+      grid-template-columns: 1fr;
+    }
+    .portfolio-sub {
+      text-align: left;
+    }
+    .gallery-card.featured {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* Mobile Layout (under 520px) */
+  @media (max-width: 520px) {
+    body {
+      padding: 8px;
+    }
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+    .stack-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .showcase-tabs {
+      border-radius: 12px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="brand"><span class="brand-dot"></span> BOBBY</div>
+    <a href="mailto:himjon22@gmail.com" class="menu-btn">Get In Touch</a>
+  </div>
+
+  <!-- HERO SECTION -->
+  <div class="hero">
+    <div>
+      <div class="hero-greeting">Hey, I'm Bobby,</div>
+      <h1 class="hero-title">
+        A UI/UX 
+        <span>& Frontend</span>
+        Developer
+      </h1>
+      <p class="hero-sub">Building clean, scalable web applications in React, JavaScript, and Figma. Turning complex product logic into clear interfaces.</p>
+      <a href="#work" class="cta-btn">Explore Work →</a>
+    </div>
+
+    <!-- CENTER ARCH PHOTO -->
+    <div class="arch-frame">
+      <img src="assets/photo.jpg" alt="Bobby" class="arch-photo">
+      <small class="arch-caption">Yerevan, Armenia</small>
+    </div>
+
+    <!-- RIGHT STATS -->
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="num">4</div>
+        <div class="label">Featured Products</div>
+      </div>
+      <div class="stat-item">
+        <div class="num">Live</div>
+        <div class="label">Client & Mobile UX</div>
+      </div>
+      <div class="stat-item">
+        <div class="num">React+JS</div>
+        <div class="label">Component Systems</div>
+      </div>
+      <div class="stat-item">
+        <div class="num">100%</div>
+        <div class="label">Design to Code</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4 CAPABILITIES COLUMNS -->
+  <div class="capabilities">
+    <div class="cap-card">
+      <h4>USER-CENTERED DESIGN</h4>
+      <p>Intuitive interfaces built in Figma around real user journeys and accessibility.</p>
+    </div>
+    <div class="cap-card">
+      <h4>REACT & JAVASCRIPT</h4>
+      <p>Modular, component-driven code bringing complex layouts and states to life.</p>
+    </div>
+    <div class="cap-card">
+      <h4>RESPONSIVE UI/UX</h4>
+      <p>Pixel-perfect web and mobile layouts engineered to look sharp on any device.</p>
+    </div>
+    <div class="cap-card">
+      <h4>DESIGN SYSTEMS</h4>
+      <p>Reusable component libraries ensuring visual consistency from design to production.</p>
+    </div>
+  </div>
+
+  <!-- STACK / TOOLS GRID -->
+  <div class="stack-section">
+    <div class="stack-header">
+      <h3>CORE TECH & TOOLS</h3>
+      <span>Production-ready design & code stack</span>
+    </div>
+    <div class="stack-grid">
+      <div class="stack-box">Figma</div>
+      <div class="stack-box">React</div>
+      <div class="stack-box">JavaScript (ES6+)</div>
+      <div class="stack-box">HTML5 / CSS3</div>
+      <div class="stack-box">Design Systems</div>
+      <div class="stack-box">Git / GitHub</div>
+      <div class="stack-box">Vercel</div>
+      <div class="stack-box">UI Prototyping</div>
+    </div>
+  </div>
+
+  <!-- ABOUT STATEMENT -->
+  <div class="about-grid">
+    <h2 class="about-title">
+      BRIDGING FIGMA MOCKUPS & PRODUCTION CODE
+    </h2>
+    <div class="about-text">
+      <p>Hey, I'm Bobby, a UI/UX designer and frontend developer passionate about creating visually compelling, highly functional digital products.</p>
+      <p>With a deep focus on design systems and frontend execution in React and JavaScript, I don't just hand off static visual mockups—I build functional, component-driven interfaces that deliver seamless user experiences.</p>
+    </div>
+  </div>
+
+  <!-- PORTFOLIO SHOWCASE SECTION -->
+  <div class="portfolio-header" id="work">
+    <h2 class="portfolio-title">DEEP-DIVE CASE STUDIES</h2>
+    <p class="portfolio-sub">Explore screen flows, component breakdowns, and live interfaces.</p>
+  </div>
+
+  <!-- TAB SWITCHER -->
+  <div class="showcase-tabs-wrapper">
+    <div class="showcase-tabs">
+      <button class="tab-btn active" onclick="switchProject('winerman', this)">Winerman Crypto</button>
+      <button class="tab-btn" onclick="switchProject('spot', this)">SPOT Booking</button>
+      <button class="tab-btn" onclick="switchProject('zenith', this)">Zenith Wellness</button>
+      <button class="tab-btn" onclick="switchProject('volt', this)">Volt Fitness</button>
+    </div>
+  </div>
+
+  <!-- WINERMAN GALLERY -->
+  <div id="winerman-gallery" class="project-gallery active">
+    <div class="gallery-grid">
+      <div class="gallery-card featured">
+        <div class="img-wrapper">
+          <img src="assets/projects/winerman-dashboard.png" alt="Winerman Crypto Dashboard">
+        </div>
+        <div class="card-info">
+          <span class="card-tag">Live Client Project</span>
+          <h3>Crypto Dashboard & Asset Management</h3>
+          <p>Comprehensive dark-mode dashboard displaying portfolio growth, asset allocations, and recent account activity.</p>
+        </div>
+      </div>
+
+      <div class="gallery-card">
+        <div class="img-wrapper">
+          <img src="assets/projects/winerman-onboarding.png" alt="Winerman Beginner Landing Page">
+        </div>
+        <div class="card-info">
+          <span class="card-tag">Onboarding Hero</span>
+          <h3>Beginner-Friendly Onboarding</h3>
+          <p>Approachability-focused landing hero designed for first-time crypto buyers without complex jargon.</p>
+        </div>
+      </div>
+
+      <div class="gallery-card">
+        <div class="img-wrapper">
+          <img src="assets/projects/winerman-ticker.png" alt="Winerman Real-time Ticker">
+        </div>
+        <div class="card-info">
+          <span class="card-tag">Live Component</span>
+          <h3>Real-Time Market Tracker</h3>
+          <p>Live ticker showing price movements, 24-hour trends, and direct market navigation without manual refreshes.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SPOT GALLERY -->
+  <div id="spot-gallery" class="project-gallery">
+    <div class="gallery-grid">
+      <div class="gallery-card featured">
+        <div class="img-wrapper">
+          <img src="assets/projects/spot-claim.png" alt="SPOT Timed Waitlist Claim">
+        </div>
+        <div class="card-info">
+          <span class="card-tag">Core UX Flow</span>
+          <h3>2-Minute Timed Claim Window</h3>
+          <p>High-urgency reservation hold screen with a prominent countdown timer preventing held spots from stalling.</p>
+        </div>
+      </div>
+
+      <div class="gallery-card">
+        <div class="img-wrapper">
+          <img src="assets/projects/spot-details.png" alt="SPOT Class Details">
+        </div>
+        <div class="card-info">
+          <span class="card-tag">Discovery Screen</span>
+          <h3>Class Details & Location</h3>
+          <p>Detailed session overview including trainer profiles, integrated gym map, and one-tap waitlist entry.</p>
+        </div>
+      </div>
+
+      <div class="gallery-card">
+        <div class="img-wrapper">
+          <img src="assets/projects/spot-queue.png" alt="SPOT Waitlist Queue Position">
+        </div>
+        <div class="card-info">
+          <span class="card-tag">Queue Feedback</span>
+          <h3>Queue Position Confirmation</h3>
+          <p>Clear feedback stating exact queue rank (#2) alongside automated notification rules for open spots.</p>
+        </div>
+      </div>
+
+      <div class="gallery-card">
+        <div class="img-wrapper">
+          <img src="assets/projects/spot-confirmation.png" alt="SPOT Booking Success">
+        </div>
+        <div class="card-info">
+          <span class="card-tag">Confirmation Screen</span>
+          <h3>Instant Booking Confirmation</h3>
+          <p>Clean confirmation screen featuring quick action buttons to sync events to native calendar apps.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ZENITH GALLERY -->
+  <div id="zenith-gallery" class="project-gallery">
+    <div class="gallery-grid">
+      <div class="gallery-card featured">
+        <div class="img-wrapper">
+          <img src="assets/projects/zenith-insights.png" alt="Zenith Mood Insights">
+        </div>
+        <div class="card-info">
+          <span class="card-tag">Hero Screen</span>
+          <h3>Weekly Mood Insights</h3>
+          <p>Soft neumorphic UI tracking daily mood trends, active streaks, and soft contextual recommendations.</p>
+        </div>
+      </div>
+
+      <div class="gallery-card">
+        <div class="img-wrapper">
+          <img src="assets/projects/zenith-intervention.png" alt="Zenith Intervention Overlay">
+        </div>
+        <div class="card-info">
+          <span class="card-tag">Intervention Flow</span>
+          <h3>4-Minute Reset Modal</h3>
+          <p>Smart contextual intervention prompt triggered during low emotional logs.</p>
+        </div>
+      </div>
+
+      <div class="gallery-card">
+        <div class="img-wrapper">
+          <img src="assets/projects/zenith-breathing.png" alt="Zenith Box Breathing">
+        </div>
+        <div class="card-info">
+          <span class="card-tag">Interactive State</span>
+          <h3>Box Breathing Session</h3>
+          <p>Guided 4-round breathing timer with subtle visual expansion cycles and round counters.</p>
+        </div>
+      </div>
+
+      <div class="gallery-card">
+        <div class="img-wrapper">
+          <img src="assets/projects/zenith-analytics.png" alt="Zenith Monthly Analytics">
+        </div>
+        <div class="card-info">
+          <span class="card-tag">Long-Term Data</span>
+          <h3>Monthly Analytics & Calendar</h3>
+          <p>Comprehensive monthly calendar breakdown with pattern identification and mood distributions.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VOLT GALLERY -->
+  <div id="volt-gallery" class="project-gallery">
+    <div class="gallery-grid">
+      <div class="gallery-card featured">
+        <div class="img-wrapper">
+          <img src="assets/projects/volt-hub.png" alt="Volt Precision Hub">
+        </div>
+        <div class="card-info">
+          <span class="card-tag">Hero Screen</span>
+          <h3>Daily Precision Hub</h3>
+          <p>High-contrast daily overview featuring modular step counters, macronutrient rings, and active workout banners.</p>
+        </div>
+      </div>
+
+      <div class="gallery-card">
+        <div class="img-wrapper">
+          <img src="assets/projects/volt-nutrition.png" alt="Volt Nutrition Tracker">
+        </div>
+        <div class="card-info">
+          <span class="card-tag">Nutrition & Budget</span>
+          <h3>Macro & Meal Tracker</h3>
+          <p>Itemized meal logging with built-in daily spending metrics and macro progress indicators.</p>
+        </div>
+      </div>
+
+      <div class="gallery-card">
+        <div class="img-wrapper">
+          <img src="assets/projects/volt-swap.png" alt="Volt Swap Suggestion">
+        </div>
+        <div class="card-info">
+          <span class="card-tag">Component System</span>
+          <h3>Cheaper Swap Suggestion</h3>
+          <p>Contextual macro and cost optimization card suggesting cost-effective protein alternatives.</p>
+        </div>
+      </div>
+
+      <div class="gallery-card">
+        <div class="img-wrapper">
+          <img src="assets/projects/volt-session.png" alt="Volt Active Session">
+        </div>
+        <div class="card-info">
+          <span class="card-tag">Active Session</span>
+          <h3>Strength & Session Logging</h3>
+          <p>Live workout tracker featuring set completions, volume totals, and weekly split management.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- LIGHTBOX MODAL OVERLAY -->
+<div class="lightbox-overlay" id="lightbox">
+  <span class="lightbox-close">&times;</span>
+  <img class="lightbox-img" src="" alt="Enlarged Preview">
+</div>
+
+<!-- JAVASCRIPT FOR TABS & LIGHTBOX -->
+<script>
+  function switchProject(projectId, element) {
+    document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+    document.querySelectorAll('.project-gallery').forEach(gallery => gallery.classList.remove('active'));
+
+    element.classList.add('active');
+    document.getElementById(projectId + '-gallery').classList.add('active');
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = lightbox.querySelector('.lightbox-img');
+    const closeBtn = lightbox.querySelector('.lightbox-close');
+
+    // Attach click listener to all project gallery images
+    document.querySelectorAll('.project-gallery .img-wrapper img').forEach(img => {
+      img.addEventListener('click', () => {
+        lightboxImg.src = img.src;
+        lightboxImg.alt = img.alt;
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    const closeLightbox = () => {
+      lightbox.classList.remove('active');
+      document.body.style.overflow = '';
+    };
+
+    closeBtn.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) closeLightbox();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+        closeLightbox();
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
